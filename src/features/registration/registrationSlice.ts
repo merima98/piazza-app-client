@@ -2,6 +2,7 @@ import { REGISTER_USER } from "./registrationTypes";
 
 const initialState = {
   user: {},
+  accessToken: null,
   isLoggedIn: false,
 };
 
@@ -11,7 +12,18 @@ export const registrationSlice = (
 ) => {
   switch (type) {
     case REGISTER_USER:
-      return { ...state, user: payload, isLoggedIn: true };
+      const temp = {
+        ...state,
+        accessToken: payload.accessToken,
+        user: payload.user,
+        isLoggedIn: true,
+      };
+      return {
+        ...state,
+        accessToken: payload.accessToken,
+        user: payload.user,
+        isLoggedIn: true,
+      };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -17,9 +17,8 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(values: any) {
-    // will be added type
-    console.log("Login values are, ", values);
+  function onSubmit(values: FieldValues) {
+    console.log("Values from login form are:, ", values);
   }
 
   return (

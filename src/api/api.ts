@@ -1,7 +1,8 @@
+import { FieldValues } from "react-hook-form";
+
 import axios from "../httpClient";
 
-function register(values: any) {
-  //will be added type
+function register(values: FieldValues) {
   return axios.post(`/register`, values);
 }
 

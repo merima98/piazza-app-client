@@ -8,7 +8,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import registrationAction from "../registration/registrationAction";
 
 function Registration() {
   const {
@@ -16,10 +20,13 @@ function Registration() {
     register,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
-  function onSubmit(values: any) {
-    // will be added type
-    console.log("Values are, ", values);
+  const dispatch = useDispatch();
+
+  function onSubmit(values: FieldValues) {
+    dispatch(registrationAction.registeUser(values));
+    navigate("/posts");
   }
 
   return (
