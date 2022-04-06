@@ -16,7 +16,7 @@ function Header() {
   function logout() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
-    navitation("/posts");
+    navitation("/login");
   }
 
   return (
