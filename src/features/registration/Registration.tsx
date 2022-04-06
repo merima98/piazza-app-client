@@ -12,7 +12,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import registrationAction from "../registration/registrationAction";
+import registrationAction from "./registrationAction";
 
 function Registration() {
   const {

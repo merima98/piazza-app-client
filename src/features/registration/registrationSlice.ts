@@ -12,12 +12,6 @@ export const registrationSlice = (
 ) => {
   switch (type) {
     case REGISTER_USER:
-      const temp = {
-        ...state,
-        accessToken: payload.accessToken,
-        user: payload.user,
-        isLoggedIn: true,
-      };
       return {
         ...state,
         accessToken: payload.accessToken,

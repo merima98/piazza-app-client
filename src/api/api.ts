@@ -6,8 +6,13 @@ function register(values: FieldValues) {
   return axios.post(`/register`, values);
 }
 
+function getAllPosts() {
+  return axios.get("/posts");
+}
+
 const exports = {
   register,
+  getAllPosts,
 };
 
 export default exports;
