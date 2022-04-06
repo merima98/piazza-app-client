@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <Flex
+      backgroundColor={"white"}
       position={"fixed"}
       w={"100%"}
       top={0}
@@ -14,7 +15,7 @@ function Header() {
     >
       <Breadcrumb separator={""}>
         <BreadcrumbItem>
-          <Link to="/">Home</Link>
+          <Link to="/posts">Home</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <Link to="/posts">New posts</Link>

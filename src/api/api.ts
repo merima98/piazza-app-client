@@ -7,7 +7,7 @@ function register(values: FieldValues) {
 }
 
 function getAllPosts() {
-  return axios.get("/posts");
+  return axios.get("/posts?_expand=user");
 }
 
 const exports = {
