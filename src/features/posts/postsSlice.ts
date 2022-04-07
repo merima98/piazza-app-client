@@ -1,7 +1,8 @@
-import { GET_ALL_POSTS, ADD_NEW_POST } from "./postsTypes";
+import { GET_ALL_POSTS, ADD_NEW_POST, GET_POST_BY_ID } from "./postsTypes";
 
 const initialState = {
   posts: [],
+  post: {},
 };
 
 export const postsSlice = (state = initialState, { type, payload }: any) => {
@@ -15,6 +16,11 @@ export const postsSlice = (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         posts: [payload, ...state.posts],
+      };
+    case GET_POST_BY_ID:
+      return {
+        ...state,
+        post: payload,
       };
     default:
       return state;

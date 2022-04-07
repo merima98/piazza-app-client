@@ -22,12 +22,17 @@ function getUserById(userId: number) {
   return axios.get(`/users?id=${userId}`);
 }
 
+function getPostById(postId: number) {
+  return axios.get(`/posts/${postId}?_expand=user`);
+}
+
 const exports = {
   register,
   getAllPosts,
   login,
   addNewPost,
   getUserById,
+  getPostById,
 };
 
 export default exports;
