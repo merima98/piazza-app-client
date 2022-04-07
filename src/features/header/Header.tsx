@@ -1,6 +1,14 @@
-import { Breadcrumb, BreadcrumbItem, Button, Flex } from "@chakra-ui/react";
-import { useEffect } from "react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
+import { User } from "react-feather";
 
 function Header() {
   const navitation = useNavigate();
@@ -36,7 +44,15 @@ function Header() {
             <Link to="/posts">Your posts</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <Button onClick={() => logout()}>Logout</Button>
+            <Menu>
+              <MenuButton>
+                <User height={20} width={20} />
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Your profile</MenuItem>
+                <MenuItem onClick={() => logout()}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
           </BreadcrumbItem>
         </Breadcrumb>
       ) : (

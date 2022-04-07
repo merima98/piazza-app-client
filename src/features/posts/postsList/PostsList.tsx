@@ -9,6 +9,7 @@ import SinglePost from "../singlePost/SinglePost";
 
 function PostsList() {
   const dispatch = useDispatch();
+  let token = window.localStorage.getItem("token");
 
   const posts = useSelector((state: { postsSlice: any }) => ({
     posts: state.postsSlice.posts,
@@ -20,9 +21,12 @@ function PostsList() {
 
   return (
     <Container>
-      <Flex>
-        <NewPostForm />
-      </Flex>
+      {token && (
+        <Flex>
+          <NewPostForm />
+        </Flex>
+      )}
+
       {posts.posts.map((post: Post) => {
         return (
           <SinglePost
