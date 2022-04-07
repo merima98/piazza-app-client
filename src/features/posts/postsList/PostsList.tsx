@@ -1,8 +1,9 @@
-import { Center } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Post } from "../../../models/post";
+import NewPostForm from "../newPost/NewPostFrom";
 import postsAction from "../postsAction";
 import SinglePost from "../singlePost/SinglePost";
 
@@ -18,7 +19,10 @@ function PostsList() {
   }, [dispatch]);
 
   return (
-    <Center flexDirection={"column"} mt={20}>
+    <Container>
+      <Flex>
+        <NewPostForm />
+      </Flex>
       {posts.posts.map((post: Post) => {
         return (
           <SinglePost
@@ -33,7 +37,7 @@ function PostsList() {
           />
         );
       })}
-    </Center>
+    </Container>
   );
 }
 

@@ -7,6 +7,7 @@ const loginUser = (values: FieldValues) => async (dispatch: any) => {
   const { data } = await api.default.login(values);
   dispatch({ type: LOGIN_USER, payload: data });
   window.localStorage.setItem("token", data.accessToken);
+  window.localStorage.setItem("userId", data.user.id);
 };
 
 export const isLogin = () => async (dispatch: any) => {

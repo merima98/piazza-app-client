@@ -8,11 +8,13 @@ function Header() {
 
   function logout() {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("userId");
     navitation("/posts");
   }
 
   return (
     <Flex
+      zIndex={1}
       backgroundColor={"white"}
       position={"fixed"}
       w={"100%"}
