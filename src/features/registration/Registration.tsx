@@ -21,9 +21,7 @@ function Registration() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   function onSubmit(values: FieldValues) {
     dispatch(registrationAction.registeUser(values));
     navigate("/posts");
