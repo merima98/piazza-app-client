@@ -11,11 +11,15 @@ function login(values: FieldValues) {
 }
 
 function getAllPosts() {
-  return axios.get("/posts?_expand=user");
+  return axios.get("/posts?_expand=user&_sort=dateOfCreation&_order=asc");
 }
 
 function addNewPost(values: any) {
   return axios.post("/posts", values);
+}
+
+function getUserById(userId: number) {
+  return axios.get(`/users?id=${userId}`);
 }
 
 const exports = {
@@ -23,6 +27,7 @@ const exports = {
   getAllPosts,
   login,
   addNewPost,
+  getUserById,
 };
 
 export default exports;

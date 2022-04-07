@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Center,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -27,9 +26,10 @@ function NewPostForm() {
 
   function onSubmit(values: FieldValues) {
     const userId = Number(window.localStorage.getItem("userId"));
+
     const data = {
-      dateOdModification: "2022-12-12T18:25:43.511Z",
-      dateOfCreation: "2022-12-23T18:25:43.511Z",
+      dateOdModification: new Date(),
+      dateOfCreation: new Date(),
       content: values.content,
       userId: userId,
       image: values.image,
