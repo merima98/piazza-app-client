@@ -22,6 +22,7 @@ function SinglePost(props: Post) {
       return value;
     }
   }
+
   const navigation = useNavigate();
 
   function navigateToDetails() {

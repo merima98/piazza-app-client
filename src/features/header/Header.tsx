@@ -13,7 +13,6 @@ import { User } from "react-feather";
 function Header() {
   const navitation = useNavigate();
   let token = window.localStorage.getItem("token");
-
   function logout() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");

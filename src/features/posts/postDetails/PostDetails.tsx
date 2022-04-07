@@ -16,7 +16,7 @@ function PostDetails() {
 
   useEffect(() => {
     dispatch(postAction.getPostById(Number(params.id)));
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   function convertDate(date?: string) {
     if (date) {
