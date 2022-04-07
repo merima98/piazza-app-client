@@ -6,6 +6,10 @@ function register(values: FieldValues) {
   return axios.post(`/register`, values);
 }
 
+function login(values: FieldValues) {
+  return axios.post(`/login`, values);
+}
+
 function getAllPosts() {
   return axios.get("/posts?_expand=user");
 }
@@ -13,6 +17,7 @@ function getAllPosts() {
 const exports = {
   register,
   getAllPosts,
+  login,
 };
 
 export default exports;

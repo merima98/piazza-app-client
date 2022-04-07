@@ -8,7 +8,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useForm, FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import loginAction from "./loginAction";
 
 function Login() {
   const {
@@ -16,9 +19,13 @@ function Login() {
     register,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function onSubmit(values: FieldValues) {
     console.log("Values from login form are:, ", values);
+    dispatch(loginAction.loginUser(values));
+    navigate("/posts");
   }
 
   return (
@@ -64,7 +71,7 @@ function Login() {
       <Box display={"flex"}>
         <Text mr={1}>Do not have an account?</Text>
         <Text color={"blue.500"}>
-          <Link to={"/"}>Register</Link>
+          <Link to={"/"}>Login</Link>
         </Text>
       </Box>
     </Center>

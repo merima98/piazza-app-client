@@ -3,7 +3,7 @@ import { REGISTER_USER } from "./registrationTypes";
 const initialState = {
   user: {},
   accessToken: null,
-  isLoggedIn: false,
+  isLoggedIn: window.localStorage.getItem("token") ? true : false,
 };
 
 export const registrationSlice = (
