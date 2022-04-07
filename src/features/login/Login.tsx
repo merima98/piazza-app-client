@@ -23,7 +23,6 @@ function Login() {
   const navigate = useNavigate();
 
   function onSubmit(values: FieldValues) {
-    console.log("Values from login form are:, ", values);
     dispatch(loginAction.loginUser(values));
     navigate("/posts");
   }

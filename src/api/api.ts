@@ -14,10 +14,15 @@ function getAllPosts() {
   return axios.get("/posts?_expand=user");
 }
 
+function addNewPost(values: any) {
+  return axios.post("/posts", values);
+}
+
 const exports = {
   register,
   getAllPosts,
   login,
+  addNewPost,
 };
 
 export default exports;

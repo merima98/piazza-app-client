@@ -14,7 +14,7 @@ function Header() {
 
   return (
     <Flex
-      zIndex={1}
+      zIndex={2}
       backgroundColor={"white"}
       position={"fixed"}
       w={"100%"}

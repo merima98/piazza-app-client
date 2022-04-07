@@ -13,6 +13,8 @@ function SinglePost(props: Post) {
     image,
   } = props;
 
+  console.log("Props are, ", props);
+
   function convertDate(date?: string) {
     if (date) {
       let dateParse = Date.parse(date);
@@ -25,8 +27,8 @@ function SinglePost(props: Post) {
     <Box w={"100%"} mb={2} zIndex={-1} justifyContent={"center"}>
       <Box mb={2} p={10} border={"1px solid"} borderColor={"gray.100"}>
         <Flex flexDirection={"row"}>
-          <Text mb={2}>{user.firstName}</Text>
-          <Text mb={2}>{user.lastName}</Text>
+          <Text mb={2}>{user?.firstName}</Text>
+          <Text mb={2}>{user?.lastName}</Text>
         </Flex>
         <Image mb={2} src={image} boxSize={"auto"} height={"auto"} />
         <Text mb={2}>{content}</Text>

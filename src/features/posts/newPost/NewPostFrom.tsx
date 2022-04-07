@@ -8,6 +8,9 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+
+import postAction from "../postsAction";
 
 function NewPostForm() {
   const {
@@ -16,8 +19,18 @@ function NewPostForm() {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
+
   function onSubmit(values: FieldValues) {
-    console.log("Values from new form are, ", values);
+    const userId = Number(window.localStorage.getItem("userId"));
+    const data = {
+      dateOdModification: "2022-12-12T18:25:43.511Z",
+      dateOfCreation: "2022-12-23T18:25:43.511Z",
+      content: values.content,
+      userId: userId,
+      image: values.image,
+    };
+    dispatch(postAction.addNewPost(data));
   }
 
   return (
@@ -26,7 +39,7 @@ function NewPostForm() {
       mt={"5rem"}
       mb={2}
       paddingTop={5}
-      zIndex={-1}
+      zIndex={1}
       justifyContent={"center"}
     >
       <Box width={"100%"}>
