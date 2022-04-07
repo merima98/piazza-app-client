@@ -6,6 +6,8 @@ import {
   FormControl,
   FormErrorMessage,
   Input,
+  useToast,
+  Wrap,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -16,10 +18,12 @@ function NewPostForm() {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm();
 
   const dispatch = useDispatch();
+  const toast = useToast();
 
   function onSubmit(values: FieldValues) {
     const userId = Number(window.localStorage.getItem("userId"));
@@ -31,6 +35,13 @@ function NewPostForm() {
       image: values.image,
     };
     dispatch(postAction.addNewPost(data));
+    toast({
+      title: `You've added post successfuly!`,
+      status: "success",
+      isClosable: true,
+      position: "top",
+    });
+    reset();
   }
 
   return (

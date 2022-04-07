@@ -13,8 +13,6 @@ function SinglePost(props: Post) {
     image,
   } = props;
 
-  console.log("Props are, ", props);
-
   function convertDate(date?: string) {
     if (date) {
       let dateParse = Date.parse(date);
