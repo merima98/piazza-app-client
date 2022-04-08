@@ -16,7 +16,7 @@ function App() {
 
   return (
     <ChakraProvider>
-      <ColorModeScript initialColorMode="light" />
+      <ColorModeScript initialColorMode="dark" />
       <BrowserRouter>
         <Header />
         <Routes>

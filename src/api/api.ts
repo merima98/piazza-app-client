@@ -26,6 +26,10 @@ function getPostById(postId: number) {
   return axios.get(`/posts/${postId}?_expand=user`);
 }
 
+function deletePost(postId: number) {
+  return axios.get(`/posts/${postId}`);
+}
+
 const exports = {
   register,
   getAllPosts,
@@ -33,6 +37,7 @@ const exports = {
   addNewPost,
   getUserById,
   getPostById,
+  deletePost,
 };
 
 export default exports;
