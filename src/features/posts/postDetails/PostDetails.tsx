@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Center,
+  useToast,
   Image,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -21,6 +22,7 @@ import { format } from "date-fns";
 
 function PostDetails() {
   const params = useParams();
+  const toast = useToast();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -46,6 +48,13 @@ function PostDetails() {
     console.log("I deleted post.");
     dispatch(postAction.detetePostBId(Number(params.id)));
     onClose();
+    toast({
+      title: "Post deleted",
+      description: "You deleted post successfully!",
+      status: "success",
+      position: "top",
+      isClosable: true,
+    });
     navigation("/posts");
   }
   return (
@@ -90,7 +99,12 @@ function PostDetails() {
                   Are you sure you want to delete this post?
                 </AlertDialogBody>
                 <AlertDialogFooter>
-                  <Button onClick={onClose} colorScheme={"blue"} size={"xs"}>
+                  <Button
+                    onClick={onClose}
+                    colorScheme={"blue"}
+                    size={"xs"}
+                    mr={2}
+                  >
                     Cancel
                   </Button>
                   <Button
