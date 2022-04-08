@@ -1,4 +1,9 @@
-import { GET_ALL_POSTS, ADD_NEW_POST, GET_POST_BY_ID } from "./postsTypes";
+import {
+  GET_ALL_POSTS,
+  ADD_NEW_POST,
+  GET_POST_BY_ID,
+  DELETE_POST_BY_ID,
+} from "./postsTypes";
 
 const initialState = {
   posts: [],
@@ -21,6 +26,11 @@ export const postsSlice = (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         post: payload,
+      };
+    case DELETE_POST_BY_ID:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post !== payload),
       };
     default:
       return state;

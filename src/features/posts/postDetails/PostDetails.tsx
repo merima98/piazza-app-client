@@ -11,7 +11,7 @@ import {
   Image,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import React from "react";
@@ -23,6 +23,7 @@ function PostDetails() {
   const params = useParams();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const cancelRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const postById = useSelector((state: { postsSlice: any }) => ({
@@ -43,7 +44,9 @@ function PostDetails() {
 
   function deletePost() {
     console.log("I deleted post.");
+    dispatch(postAction.detetePostBId(Number(params.id)));
     onClose();
+    navigation("/posts");
   }
   return (
     <Center mt={"10rem"} flexDirection={"column"} mb={3}>

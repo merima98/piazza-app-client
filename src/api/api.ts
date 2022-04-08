@@ -27,7 +27,7 @@ function getPostById(postId: number) {
 }
 
 function deletePost(postId: number) {
-  return axios.get(`/posts/${postId}`);
+  return axios.delete(`/posts/${postId}`);
 }
 
 const exports = {
