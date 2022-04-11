@@ -30,6 +30,10 @@ function deletePost(postId: number) {
   return axios.delete(`/posts/${postId}`);
 }
 
+function updatePost(postId: number, data: any) {
+  return axios.put(`/posts/${postId}`, data);
+}
+
 const exports = {
   register,
   getAllPosts,
@@ -38,6 +42,7 @@ const exports = {
   getUserById,
   getPostById,
   deletePost,
+  updatePost,
 };
 
 export default exports;

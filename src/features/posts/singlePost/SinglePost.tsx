@@ -7,7 +7,7 @@ import { Post } from "../../../models/post";
 function SinglePost(props: Post) {
   const {
     user,
-    dateOdModification,
+    dateOfModification,
     dateOfCreation,
     id,
     userId,

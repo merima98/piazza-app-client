@@ -6,7 +6,6 @@ import {
   FormErrorMessage,
   Input,
   useToast,
-  Wrap,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -28,7 +27,7 @@ function NewPostForm() {
     const userId = Number(window.localStorage.getItem("userId"));
 
     const data = {
-      dateOdModification: new Date(),
+      dateOfModification: new Date(),
       dateOfCreation: new Date(),
       content: values.content,
       userId: userId,

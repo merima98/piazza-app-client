@@ -4,6 +4,7 @@ import {
   ADD_NEW_POST,
   GET_POST_BY_ID,
   DELETE_POST_BY_ID,
+  UPDATE_POST_BY_ID,
 } from "./postsTypes";
 
 const getAllPosts = () => async (dispatch: any) => {
@@ -23,15 +24,20 @@ const getPostById = (postId: number) => async (dispatch: any) => {
 
 const detetePostBId = (postId: number) => async (dispatch: any) => {
   const { data } = await api.default.deletePost(postId);
-  console.log("Data after deleting post is - I am in postAction.ts, ", data);
   dispatch({ type: DELETE_POST_BY_ID, payload: data });
 };
 
+const updatePostById =
+  (postId: number, values: any) => async (dispatch: any) => {
+    const { data } = await api.default.updatePost(postId, values);
+    dispatch({ type: UPDATE_POST_BY_ID, payload: data });
+  };
 const exports = {
   getAllPosts,
   addNewPost,
   getPostById,
   detetePostBId,
+  updatePostById,
 };
 
 export default exports;

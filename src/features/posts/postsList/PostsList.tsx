@@ -31,7 +31,7 @@ function PostsList() {
         return (
           <SinglePost
             id={post.id}
-            dateOdModification={post.dateOdModification}
+            dateOfModification={post.dateOfModification}
             dateOfCreation={post.dateOfCreation}
             image={post.image}
             userId={post.userId}

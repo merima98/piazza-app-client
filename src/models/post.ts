@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export type Post = {
-  dateOdModification: string;
+  dateOfModification: string;
   dateOfCreation: string;
   content: string;
   userId: number;

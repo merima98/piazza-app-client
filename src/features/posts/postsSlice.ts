@@ -3,6 +3,7 @@ import {
   ADD_NEW_POST,
   GET_POST_BY_ID,
   DELETE_POST_BY_ID,
+  UPDATE_POST_BY_ID,
 } from "./postsTypes";
 
 const initialState = {
@@ -31,6 +32,11 @@ export const postsSlice = (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         posts: state.posts.filter((post) => post !== payload),
+      };
+    case UPDATE_POST_BY_ID:
+      return {
+        ...state,
+        post: payload,
       };
     default:
       return state;

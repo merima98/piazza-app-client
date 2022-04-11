@@ -5,20 +5,32 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
+  Text,
   Box,
   Button,
   Center,
   useToast,
   Image,
   useDisclosure,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  Input,
+  DrawerFooter,
+  FormControl,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 import React from "react";
+import { format } from "date-fns";
 
 import postAction from "../postsAction";
-import { format } from "date-fns";
 
 function PostDetails() {
   const params = useParams();
@@ -27,6 +39,12 @@ function PostDetails() {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const cancelRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   const postById = useSelector((state: { postsSlice: any }) => ({
     post: state.postsSlice,
@@ -45,7 +63,6 @@ function PostDetails() {
   }
 
   function deletePost() {
-    console.log("I deleted post.");
     dispatch(postAction.detetePostBId(Number(params.id)));
     onClose();
     toast({
@@ -57,6 +74,27 @@ function PostDetails() {
     });
     navigation("/posts");
   }
+
+  function onSubmit(values: FieldValues) {
+    const data = {
+      dateOfModification: new Date(),
+      dateOfCreation: postById.post?.post.dateOfCreation,
+      content: values.content,
+      userId: postById.post?.post.userId,
+      image: values.image,
+    };
+    dispatch(postAction.updatePostById(Number(params.id), data));
+    setIsDrawerOpen(false);
+    toast({
+      title: "Post updated!",
+      description: "You updated post successfully!",
+      status: "success",
+      position: "top",
+      isClosable: true,
+    });
+    navigation("/posts");
+  }
+
   return (
     <Center mt={"10rem"} flexDirection={"column"} mb={3}>
       <Box p={15} border={"1px solid"} borderColor={"gray.100"}>
@@ -81,9 +119,73 @@ function PostDetails() {
           Modified: {convertDate(postById.post?.post.dateOdModification)}
         </Box>
         <Box>
-          <Button colorScheme={"blue"} size={"xs"} mr={2}>
+          <Button
+            colorScheme={"blue"}
+            size={"xs"}
+            mr={2}
+            onClick={() => setIsDrawerOpen(true)}
+          >
             Edit
           </Button>
+          <Drawer
+            isOpen={isDrawerOpen}
+            placement="right"
+            onClose={() => setIsDrawerOpen(false)}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <DrawerHeader>Edit post</DrawerHeader>
+                <DrawerBody>
+                  <FormControl isInvalid={errors.image}>
+                    <Input
+                      placeholder="Image URL"
+                      {...register("image", {
+                        required: "Image URL is required fielad!",
+                      })}
+                      mb={2}
+                    />
+                    <FormErrorMessage mb={2}>
+                      {errors.image && errors.image.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl isInvalid={errors.content}>
+                    <Input
+                      placeholder="Content of image."
+                      {...register("content", {
+                        required: "Content is required field!",
+                        minLength: {
+                          value: 4,
+                          message: "Content must have 4 characters!",
+                        },
+                      })}
+                      mb={2}
+                    />
+                    <FormErrorMessage mb={2}>
+                      {errors.content && errors.content.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <Text fontWeight={"bold"} fontSize={12}>
+                    Last modified:{" "}
+                    {convertDate(postById.post?.post.dateOdModification)}
+                  </Text>
+                </DrawerBody>
+                <DrawerFooter>
+                  <Button
+                    variant="outline"
+                    mr={3}
+                    onClick={() => setIsDrawerOpen(false)}
+                  >
+                    Cancel changes
+                  </Button>
+                  <Button colorScheme="blue" type="submit">
+                    Save changes
+                  </Button>
+                </DrawerFooter>
+              </form>
+            </DrawerContent>
+          </Drawer>
           <Button colorScheme={"red"} size={"xs"} onClick={onOpen}>
             Delete post
           </Button>
