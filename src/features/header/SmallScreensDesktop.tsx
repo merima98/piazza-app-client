@@ -8,7 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { ChevronDown, Moon, Sun } from "react-feather";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SmallScreenDesktop() {
   const navitation = useNavigate();
@@ -28,10 +28,18 @@ function SmallScreenDesktop() {
             Piazza
           </MenuButton>
           <MenuList zIndex={3}>
-            <MenuItem>Home</MenuItem>
-            <MenuItem>New posts</MenuItem>
-            <MenuItem>My posts</MenuItem>
-            <MenuItem>Your profile</MenuItem>
+            <MenuItem>
+              <Link to="/posts">Home</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/new-posts">New posts</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/my-posts">My posts</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/your-profile">Your profile</Link>
+            </MenuItem>
             <MenuItem onClick={() => logout()}>Logout</MenuItem>
             <MenuItem>
               {colorMode === "dark" ? (
@@ -48,9 +56,15 @@ function SmallScreenDesktop() {
             Piazza
           </MenuButton>
           <MenuList>
-            <MenuItem>Home</MenuItem>
-            <MenuItem>New posts</MenuItem>
-            <MenuItem>Log out</MenuItem>
+            <MenuItem>
+              <Link to="/posts">Home</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/new-posts">New posts</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/login">Login</Link>
+            </MenuItem>
             <MenuItem>
               {colorMode === "dark" ? (
                 <Sun height={20} width={20} onClick={toggleColorMode} />

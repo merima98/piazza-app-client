@@ -17,7 +17,7 @@ function UserPostsList() {
 
   useEffect(() => {
     dispatch(postAction.getUsersPost(Number(userId)));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return (
     <Container>
