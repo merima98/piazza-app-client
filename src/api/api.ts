@@ -38,6 +38,10 @@ function userPosts(userId: number) {
   return axios.get(`users/${userId}/posts`);
 }
 
+function getNewPost() {
+  return axios.get(`/posts?_sort=dateOfCreation&_order=desc`);
+}
+
 const exports = {
   register,
   getAllPosts,
@@ -48,6 +52,7 @@ const exports = {
   deletePost,
   updatePost,
   userPosts,
+  getNewPost,
 };
 
 export default exports;
