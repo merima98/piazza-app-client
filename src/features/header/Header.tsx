@@ -53,7 +53,10 @@ function Header() {
                 <User height={20} width={20} />
               </MenuButton>
               <MenuList>
-                <MenuItem>Your profile</MenuItem>
+                <MenuItem>
+                  <Link to="/your-profile">Your profile</Link>
+                </MenuItem>
+
                 <MenuItem onClick={() => logout()}>Logout</MenuItem>
               </MenuList>
             </Menu>

@@ -42,6 +42,10 @@ function getNewPost() {
   return axios.get(`/posts?_sort=dateOfCreation&_order=desc`);
 }
 
+function updateUser(userId: number, data: any) {
+  return axios.put(`/users/${userId}`, data);
+}
+
 const exports = {
   register,
   getAllPosts,
@@ -53,6 +57,7 @@ const exports = {
   updatePost,
   userPosts,
   getNewPost,
+  updateUser,
 };
 
 export default exports;
