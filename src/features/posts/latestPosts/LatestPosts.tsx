@@ -1,8 +1,8 @@
 import { Container } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Post } from "../../../models/post";
 
+import { Post } from "../../../models/post";
 import postActions from "../postsAction";
 import SinglePost from "../singlePost/SinglePost";
 

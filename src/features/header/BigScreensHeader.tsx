@@ -15,7 +15,7 @@ import { User, Moon, Sun } from "react-feather";
 function BigScreensHeader() {
   const navitation = useNavigate();
   const headerBackground = useColorModeValue("white", "gray.800");
-  let token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
   function logout() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");

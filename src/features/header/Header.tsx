@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+
 import BigScreensHeader from "./BigScreensHeader";
 import SmallScreenDesktop from "./SmallScreensDesktop";
 

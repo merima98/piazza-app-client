@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 function SmallScreenDesktop() {
   const navitation = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
-  let token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
   function logout() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
