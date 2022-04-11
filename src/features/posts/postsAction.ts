@@ -5,6 +5,7 @@ import {
   GET_POST_BY_ID,
   DELETE_POST_BY_ID,
   UPDATE_POST_BY_ID,
+  GET_USERS_POSTS,
 } from "./postsTypes";
 
 const getAllPosts = () => async (dispatch: any) => {
@@ -32,12 +33,19 @@ const updatePostById =
     const { data } = await api.default.updatePost(postId, values);
     dispatch({ type: UPDATE_POST_BY_ID, payload: data });
   };
+
+const getUsersPost = (userId: number) => async (dispatch: any) => {
+  const { data } = await api.default.userPosts(userId);
+  dispatch({ type: GET_USERS_POSTS, payload: data });
+};
+
 const exports = {
   getAllPosts,
   addNewPost,
   getPostById,
   detetePostBId,
   updatePostById,
+  getUsersPost,
 };
 
 export default exports;

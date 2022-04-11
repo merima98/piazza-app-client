@@ -34,6 +34,10 @@ function updatePost(postId: number, data: any) {
   return axios.put(`/posts/${postId}`, data);
 }
 
+function userPosts(userId: number) {
+  return axios.get(`users/${userId}/posts`);
+}
+
 const exports = {
   register,
   getAllPosts,
@@ -43,6 +47,7 @@ const exports = {
   getPostById,
   deletePost,
   updatePost,
+  userPosts,
 };
 
 export default exports;

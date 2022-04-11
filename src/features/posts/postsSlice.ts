@@ -4,6 +4,7 @@ import {
   GET_POST_BY_ID,
   DELETE_POST_BY_ID,
   UPDATE_POST_BY_ID,
+  GET_USERS_POSTS,
 } from "./postsTypes";
 
 const initialState = {
@@ -37,6 +38,11 @@ export const postsSlice = (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         post: payload,
+      };
+    case GET_USERS_POSTS:
+      return {
+        ...state,
+        posts: payload,
       };
     default:
       return state;

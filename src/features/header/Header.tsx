@@ -45,7 +45,7 @@ function Header() {
             <Link to="/posts">New posts</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <Link to="/posts">Your posts</Link>
+            <Link to="/my-posts">My posts</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
             <Menu>
