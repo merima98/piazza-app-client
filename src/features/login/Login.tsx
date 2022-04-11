@@ -69,7 +69,7 @@ function Login() {
               </FormControl>
             </Box>
             <Button w={"100%"} mb={1} type="submit" colorScheme={"blue"}>
-              Register
+              Login
             </Button>
           </form>
         </Box>

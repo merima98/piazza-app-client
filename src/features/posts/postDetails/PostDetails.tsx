@@ -116,7 +116,7 @@ function PostDetails() {
           Created: {convertDate(postById.post?.post.dateOfCreation)}
         </Box>
         <Box fontWeight={"bold"} fontSize={12} mb={2}>
-          Modified: {convertDate(postById.post?.post.dateOdModification)}
+          Modified: {convertDate(postById.post?.post.dateOfModification)}
         </Box>
         <Box>
           <Button
@@ -168,7 +168,7 @@ function PostDetails() {
                   </FormControl>
                   <Text fontWeight={"bold"} fontSize={12}>
                     Last modified:{" "}
-                    {convertDate(postById.post?.post.dateOdModification)}
+                    {convertDate(postById.post?.post.dateOfModification)}
                   </Text>
                 </DrawerBody>
                 <DrawerFooter>
