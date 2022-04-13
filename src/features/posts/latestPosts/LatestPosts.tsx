@@ -2,12 +2,12 @@ import { Container } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Post } from "../../../models/post";
+import { Post, PostSlice } from "../../../models/post";
 import postActions from "../postsAction";
 import SinglePost from "../singlePost/SinglePost";
 
 function LatestPosts() {
-  const posts = useSelector((state: { postsSlice: any }) => ({
+  const posts = useSelector((state: { postsSlice: PostSlice }) => ({
     posts: state.postsSlice.posts,
   }));
 

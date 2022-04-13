@@ -9,3 +9,8 @@ export type Post = {
   id: number;
   user: User;
 };
+
+export type PostSlice = {
+  post: Post;
+  posts: Post[];
+};

@@ -31,6 +31,7 @@ import React from "react";
 import { format } from "date-fns";
 
 import postAction from "../postsAction";
+import { PostSlice } from "../../../models/post";
 
 function PostDetails() {
   const params = useParams();
@@ -46,7 +47,7 @@ function PostDetails() {
     formState: { errors },
   } = useForm();
 
-  const postById = useSelector((state: { postsSlice: any }) => ({
+  const postById = useSelector((state: { postsSlice: PostSlice }) => ({
     post: state.postsSlice,
   }));
 

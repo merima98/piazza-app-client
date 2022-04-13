@@ -14,7 +14,13 @@ function getAllPosts() {
   return axios.get("/posts?_expand=user&_sort=dateOfCreation&_order=asc");
 }
 
-function addNewPost(values: any) {
+function addNewPost(values: {
+  dateOfModification: string;
+  dateOfCreation: string;
+  content: string;
+  userId: number;
+  image: string;
+}) {
   return axios.post("/posts", values);
 }
 
@@ -30,7 +36,16 @@ function deletePost(postId: number) {
   return axios.delete(`/posts/${postId}`);
 }
 
-function updatePost(postId: number, data: any) {
+function updatePost(
+  postId: number,
+  data: {
+    dateOfModification: string;
+    dateOfCreation: string;
+    content: string;
+    userId: number;
+    image: string;
+  }
+) {
   return axios.put(`/posts/${postId}`, data);
 }
 
@@ -42,7 +57,15 @@ function getNewPost() {
   return axios.get(`/posts?_sort=dateOfCreation&_order=desc`);
 }
 
-function updateUser(userId: number, data: any) {
+function updateUser(
+  userId: number,
+  data: {
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+  }
+) {
   return axios.put(`/users/${userId}`, data);
 }
 

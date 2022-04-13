@@ -2,7 +2,7 @@ import { Container, Box } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Post } from "../../../models/post";
+import { Post, PostSlice } from "../../../models/post";
 import NoPosts from "../noPosts/NoPosts";
 import postAction from "../postsAction";
 import SinglePost from "../singlePost/SinglePost";
@@ -11,7 +11,7 @@ function UserPostsList() {
   const dispatch = useDispatch();
   let userId = window.localStorage.getItem("userId");
 
-  const posts = useSelector((state: { postsSlice: any }) => ({
+  const posts = useSelector((state: { postsSlice: PostSlice }) => ({
     posts: state.postsSlice.posts,
   }));
 

@@ -14,12 +14,15 @@ import {
   DrawerCloseButton,
   FormControl,
   FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
 import userAction from "../userAction";
+import { User, UserSlice } from "../../../models/user";
 
 function UserProfile() {
   const {
@@ -27,27 +30,38 @@ function UserProfile() {
     register,
     formState: { errors },
   } = useForm();
+  const toast = useToast();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   let userId = window.localStorage.getItem("userId");
 
-  const user = useSelector((state: { userSlice: any }) => ({
-    user: state.userSlice.user,
+  const user = useSelector((state: { userSlice: UserSlice }) => ({
+    user: state.userSlice,
   }));
 
   useEffect(() => {
     dispatch(userAction.getUserById(Number(userId)));
-  }, [userId, user]);
+  }, [dispatch]);
 
   function onSubmit(formValues: FieldValues) {
     const data = {
       firstName: formValues.firstName,
       lastName: formValues.lastName,
-      password: user.user[0]?.password,
-      email: user.user[0]?.email,
+      password: user.user.user[0]?.password,
+      email: user.user.user[0]?.email,
     };
     dispatch(userAction.updateUser(Number(userId), data));
+    onClose();
+    toast({
+      title: "User profile updated",
+      description: "You have updated profile data successfully!",
+      status: "success",
+      position: "top",
+      isClosable: true,
+    });
+    navigation("/posts");
   }
 
   return (
@@ -62,11 +76,11 @@ function UserProfile() {
         <Text fontSize={12} fontWeight={"bold"} mb={2}>
           First name
         </Text>
-        <Text mb={2}>{user.user[0]?.firstName}</Text>
+        <Text mb={2}>{user.user.user[0]?.firstName}</Text>
         <Text fontSize={12} fontWeight={"bold"} mb={2}>
           Last name
         </Text>
-        <Text mb={2}>{user.user[0]?.lastName}</Text>
+        <Text mb={2}>{user.user.user[0]?.lastName}</Text>
         <Button colorScheme={"blue"} size={"xs"} mb={2} onClick={onOpen}>
           Edit profile data
         </Button>

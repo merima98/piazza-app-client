@@ -2,7 +2,7 @@ import { Container, Flex } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Post } from "../../../models/post";
+import { Post, PostSlice } from "../../../models/post";
 import NewPostForm from "../newPost/NewPostFrom";
 import postsAction from "../postsAction";
 import SinglePost from "../singlePost/SinglePost";
@@ -11,7 +11,7 @@ function PostsList() {
   const dispatch = useDispatch();
   let token = window.localStorage.getItem("token");
 
-  const posts = useSelector((state: { postsSlice: any }) => ({
+  const posts = useSelector((state: { postsSlice: PostSlice }) => ({
     posts: state.postsSlice.posts,
   }));
 

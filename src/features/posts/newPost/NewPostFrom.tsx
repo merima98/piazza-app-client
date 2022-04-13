@@ -33,6 +33,7 @@ function NewPostForm() {
       userId: userId,
       image: values.image,
     };
+
     dispatch(postAction.addNewPost(data));
     toast({
       title: `You've added post successfuly!`,
