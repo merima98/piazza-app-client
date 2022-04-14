@@ -35,6 +35,10 @@ const LOGGED_IN_USER_ROUTES = [
     element: PostsList,
   },
   {
+    path: "/posts",
+    element: PostsList,
+  },
+  {
     path: "/post/:id",
     element: PostDetails,
   },

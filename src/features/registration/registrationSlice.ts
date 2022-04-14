@@ -1,4 +1,4 @@
-import { REGISTER_USER } from "./registrationTypes";
+import { GET_REGISTERED_USER, REGISTER_USER } from "./registrationTypes";
 
 const initialState = {
   user: {},
@@ -17,6 +17,12 @@ export const registrationSlice = (
         accessToken: payload.accessToken,
         user: payload.user,
         isLoggedIn: true,
+      };
+
+    case GET_REGISTERED_USER:
+      return {
+        ...state,
+        isLoggedIn: false,
       };
     default:
       return state;

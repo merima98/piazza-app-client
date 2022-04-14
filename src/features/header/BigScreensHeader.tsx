@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { User, Moon, Sun } from "react-feather";
 import { useEffect } from "react";
 import loginAction from "../login/loginAction";
+import registrationAction from "../registration/registrationAction";
 
 function BigScreensHeader() {
   const navitation = useNavigate();
@@ -31,8 +32,13 @@ function BigScreensHeader() {
     login: state.loginSlice,
   }));
 
+  const registration = useSelector((state: { registrationSlice: any }) => ({
+    registration: state.registrationSlice,
+  }));
+
   useEffect(() => {
     dispatch(loginAction.isLogin());
+    dispatch(registrationAction.isRegisteredUser());
   }, [dispatch]);
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -49,7 +55,7 @@ function BigScreensHeader() {
       borderColor={"gray.100"}
       p={3}
     >
-      {login.login.isLoggedIn ? (
+      {login.login.isLoggedIn || registration.registration.isLoggedIn ? (
         <Breadcrumb separator={""}>
           <BreadcrumbItem>
             <Link to="/posts">Home</Link>

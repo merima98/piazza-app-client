@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./features/header/Header";
 import loginAction from "./features/login/loginAction";
+import registrationAction from "./features/registration/registrationAction";
 import { LOGGED_IN_USER_ROUTES, LOGGED_OUT_ROUTES } from "./routing/routes";
 
 function App() {
@@ -14,8 +15,12 @@ function App() {
     login: state.loginSlice,
   }));
 
+  const registration = useSelector((state: { registrationSlice: any }) => ({
+    registration: state.registrationSlice,
+  }));
   useEffect(() => {
     dispatch(loginAction.isLogin());
+    dispatch(registrationAction.isRegisteredUser());
   }, [dispatch]);
 
   return (
@@ -23,7 +28,7 @@ function App() {
       <ColorModeScript initialColorMode="dark" />
       <BrowserRouter>
         <Header />
-        {login.login.isLoggedIn && (
+        {(login.login.isLoggedIn || registration.registration.isLoggedIn) && (
           <Routes>
             {LOGGED_IN_USER_ROUTES.map((item) => {
               return (
@@ -36,7 +41,7 @@ function App() {
             })}
           </Routes>
         )}
-        {!login.login.isLoggedIn && (
+        {(!login.login.isLoggedIn || !registration.registration.isLoggedIn) && (
           <Routes>
             {LOGGED_OUT_ROUTES.map((item) => {
               return (
