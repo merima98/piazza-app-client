@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./features/header/Header";
-import { isLogin } from "./features/login/loginAction";
+import loginAction from "./features/login/loginAction";
 import { LOGGED_IN_USER_ROUTES, LOGGED_OUT_ROUTES } from "./routing/routes";
 
 function App() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state);
-
-  const token = window.localStorage.getItem("token");
+  const login = useSelector((state: { loginSlice: any }) => ({
+    login: state.loginSlice,
+  }));
 
   useEffect(() => {
-    dispatch(isLogin());
+    dispatch(loginAction.isLogin());
   }, [dispatch]);
 
   return (
@@ -22,7 +23,7 @@ function App() {
       <ColorModeScript initialColorMode="dark" />
       <BrowserRouter>
         <Header />
-        {token && (
+        {login.login.isLoggedIn && (
           <Routes>
             {LOGGED_IN_USER_ROUTES.map((item) => {
               return (
@@ -35,7 +36,7 @@ function App() {
             })}
           </Routes>
         )}
-        {!token && (
+        {!login.login.isLoggedIn && (
           <Routes>
             {LOGGED_OUT_ROUTES.map((item) => {
               return (

@@ -1,9 +1,9 @@
-import { LOGIN_USER, GET_LOGGED_USER } from "./loginTypes";
+import { LOGIN_USER, GET_LOGGED_USER, LOG_OUT_USER } from "./loginTypes";
 
 const initialState = {
   user: {},
   accessToken: null,
-  isLoggedIn: window.localStorage.getItem("token"),
+  isLoggedIn: window.localStorage.getItem("token") ? true : false,
 };
 
 export const loginSlice = (state = initialState, { type, payload }: any) => {
@@ -18,7 +18,12 @@ export const loginSlice = (state = initialState, { type, payload }: any) => {
     case GET_LOGGED_USER:
       return {
         ...state,
-        isLoggedIn: window.localStorage.getItem("token"),
+        isLoggedIn: window.localStorage.getItem("token") ? true : false,
+      };
+    case LOG_OUT_USER:
+      return {
+        ...state,
+        isLoggedIn: false,
       };
     default:
       return state;

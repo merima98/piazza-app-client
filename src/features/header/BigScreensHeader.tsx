@@ -10,17 +10,30 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { User, Moon, Sun } from "react-feather";
+import { useEffect } from "react";
+import loginAction from "../login/loginAction";
 
 function BigScreensHeader() {
   const navitation = useNavigate();
+  const dispatch = useDispatch();
   const headerBackground = useColorModeValue("white", "gray.800");
-  const token = window.localStorage.getItem("token");
+  let token = window.localStorage.getItem("token");
   function logout() {
+    dispatch(loginAction.logOut());
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
     navitation("/login");
   }
+
+  const login = useSelector((state: { loginSlice: any }) => ({
+    login: state.loginSlice,
+  }));
+
+  useEffect(() => {
+    dispatch(loginAction.isLogin());
+  }, [dispatch]);
 
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -36,7 +49,7 @@ function BigScreensHeader() {
       borderColor={"gray.100"}
       p={3}
     >
-      {token ? (
+      {login.login.isLoggedIn ? (
         <Breadcrumb separator={""}>
           <BreadcrumbItem>
             <Link to="/posts">Home</Link>

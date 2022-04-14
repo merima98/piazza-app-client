@@ -32,10 +32,6 @@ const LOGGED_OUT_ROUTES = [
 const LOGGED_IN_USER_ROUTES = [
   {
     path: "/",
-    element: Registration,
-  },
-  {
-    path: "/posts",
     element: PostsList,
   },
   {

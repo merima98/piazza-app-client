@@ -1,7 +1,7 @@
 import { FieldValues } from "react-hook-form";
 
 import * as api from "../../api/api";
-import { LOGIN_USER, GET_LOGGED_USER } from "./loginTypes";
+import { LOGIN_USER, GET_LOGGED_USER, LOG_OUT_USER } from "./loginTypes";
 
 const loginUser = (values: FieldValues) => async (dispatch: any) => {
   const { data } = await api.default.login(values);
@@ -21,9 +21,21 @@ export const isLogin = () => async (dispatch: any) => {
   }
 };
 
+export const logOut = () => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: LOG_OUT_USER,
+      payload: window.localStorage.getItem("token") ? true : false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const exports = {
   loginUser,
   isLogin,
+  logOut,
 };
 
 export default exports;
