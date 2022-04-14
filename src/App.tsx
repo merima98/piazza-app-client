@@ -5,11 +5,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./features/header/Header";
 import { isLogin } from "./features/login/loginAction";
-import { ROUTES } from "./routing/routes";
+import { LOGGED_IN_USER_ROUTES, LOGGED_OUT_ROUTES } from "./routing/routes";
 
 function App() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state);
+
+  const token = window.localStorage.getItem("token");
+
   useEffect(() => {
     dispatch(isLogin());
   }, [dispatch]);
@@ -19,17 +22,32 @@ function App() {
       <ColorModeScript initialColorMode="dark" />
       <BrowserRouter>
         <Header />
-        <Routes>
-          {ROUTES.map((item) => {
-            return (
-              <Route
-                key={item.path}
-                path={item.path}
-                element={<item.element />}
-              />
-            );
-          })}
-        </Routes>
+        {token && (
+          <Routes>
+            {LOGGED_IN_USER_ROUTES.map((item) => {
+              return (
+                <Route
+                  key={item.path}
+                  path={item.path}
+                  element={<item.element />}
+                />
+              );
+            })}
+          </Routes>
+        )}
+        {!token && (
+          <Routes>
+            {LOGGED_OUT_ROUTES.map((item) => {
+              return (
+                <Route
+                  key={item.path}
+                  path={item.path}
+                  element={<item.element />}
+                />
+              );
+            })}
+          </Routes>
+        )}
       </BrowserRouter>
     </ChakraProvider>
   );

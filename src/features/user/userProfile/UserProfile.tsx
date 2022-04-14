@@ -22,7 +22,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
 import userAction from "../userAction";
-import { User, UserSlice } from "../../../models/user";
+import { UserSlice } from "../../../models/user";
 
 function UserProfile() {
   const {

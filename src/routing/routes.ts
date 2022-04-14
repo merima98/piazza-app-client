@@ -6,7 +6,7 @@ import UserPostsList from "../features/posts/userPostsList/UserPostsList";
 import Registration from "../features/registration/Registration";
 import UserProfile from "../features/user/userProfile/UserProfile";
 
-const ROUTES = [
+const LOGGED_OUT_ROUTES = [
   {
     path: "/",
     element: Registration,
@@ -14,6 +14,25 @@ const ROUTES = [
   {
     path: "/login",
     element: Login,
+  },
+  {
+    path: "/posts",
+    element: PostsList,
+  },
+  {
+    path: "/post/:id",
+    element: PostDetails,
+  },
+  {
+    path: "/new-posts",
+    element: LatestPosts,
+  },
+];
+
+const LOGGED_IN_USER_ROUTES = [
+  {
+    path: "/",
+    element: Registration,
   },
   {
     path: "/posts",
@@ -37,4 +56,4 @@ const ROUTES = [
   },
 ];
 
-export { ROUTES };
+export { LOGGED_IN_USER_ROUTES, LOGGED_OUT_ROUTES };
