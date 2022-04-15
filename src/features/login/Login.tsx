@@ -5,8 +5,12 @@ import {
   FormControl,
   FormErrorMessage,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { Eye, EyeOff } from "react-feather";
 import { useForm, FieldValues } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +25,11 @@ function Login() {
   } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+
+  const handleShowState = () => {
+    setShow(!show);
+  };
 
   function onSubmit(values: FieldValues) {
     dispatch(loginAction.loginUser(values));
@@ -52,17 +61,24 @@ function Login() {
                 </FormErrorMessage>
               </FormControl>
               <FormControl mb={3} isInvalid={errors.password}>
-                <Input
-                  placeholder="Password"
-                  type={"password"}
-                  {...register("password", {
-                    required: "Password is required field!",
-                    minLength: {
-                      value: 4,
-                      message: "Password must have 4 characters!",
-                    },
-                  })}
-                />
+                <InputGroup>
+                  <Input
+                    placeholder="Password"
+                    type={show ? "text" : "password"}
+                    {...register("password", {
+                      required: "Password is required field!",
+                      minLength: {
+                        value: 4,
+                        message: "Password must have 4 characters!",
+                      },
+                    })}
+                  />
+                  <InputRightElement>
+                    <Button onClick={handleShowState} colorScheme={"blue"}>
+                      {show ? <EyeOff /> : <Eye />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
                 <FormErrorMessage>
                   {errors.password && errors.password.message}
                 </FormErrorMessage>
