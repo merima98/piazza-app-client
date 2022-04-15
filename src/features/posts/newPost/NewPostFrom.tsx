@@ -81,7 +81,13 @@ function NewPostForm() {
               {errors.content && errors.content.message}
             </FormErrorMessage>
           </FormControl>
-          <Button w={"100%"} mb={1} type="submit" colorScheme={"blue"}>
+          <Button
+            w={"100%"}
+            mb={1}
+            type="submit"
+            colorScheme={"blue"}
+            data-test="add-new-post-button"
+          >
             Add post
           </Button>
         </form>

@@ -69,11 +69,18 @@ function BigScreensHeader() {
           <BreadcrumbItem>
             <Menu>
               <MenuButton>
-                <User height={20} width={20} />
+                <User
+                  id="userIcon"
+                  data-test="data-test-user-icon"
+                  height={20}
+                  width={20}
+                />
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                  <Link to="/your-profile">Your profile</Link>
+                  <Link to="/your-profile" data-test="data-test-your-profile">
+                    Your profile
+                  </Link>
                 </MenuItem>
 
                 <MenuItem onClick={() => logout()}>Logout</MenuItem>
