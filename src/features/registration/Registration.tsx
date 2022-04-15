@@ -42,6 +42,7 @@ function Registration() {
               <FormControl mb={3} isInvalid={errors.firstName}>
                 <Input
                   placeholder="First name"
+                  id="firstName"
                   {...register("firstName", {
                     required: "First name is required field!",
                     minLength: {
@@ -57,6 +58,7 @@ function Registration() {
               <FormControl mb={3} isInvalid={errors.lastName}>
                 <Input
                   placeholder="Last name"
+                  id="lastName"
                   {...register("lastName", {
                     required: "Last name is required field!",
                     minLength: {
@@ -72,6 +74,7 @@ function Registration() {
               <FormControl mb={3} isInvalid={errors.email}>
                 <Input
                   placeholder="Email"
+                  id="email"
                   type={"email"}
                   {...register("email", {
                     required: "Email is required!",
@@ -84,6 +87,7 @@ function Registration() {
               <FormControl mb={3} isInvalid={errors.password}>
                 <Input
                   placeholder="Password"
+                  id="password"
                   type={"password"}
                   {...register("password", {
                     required: "Password is required field!",
@@ -98,7 +102,13 @@ function Registration() {
                 </FormErrorMessage>
               </FormControl>
             </Box>
-            <Button w={"100%"} type="submit" colorScheme={"blue"} mb={1}>
+            <Button
+              w={"100%"}
+              type="submit"
+              colorScheme={"blue"}
+              data-test="register-button"
+              mb={1}
+            >
               Register
             </Button>
           </form>
