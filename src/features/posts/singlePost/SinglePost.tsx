@@ -42,6 +42,7 @@ function SinglePost(props: Post) {
             src={image}
             boxSize={"auto"}
             height={"auto"}
+            data-test="data-test-post-details-image"
             onClick={() => navigateToDetails()}
           />
         </Tooltip>

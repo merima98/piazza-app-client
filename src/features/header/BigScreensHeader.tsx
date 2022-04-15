@@ -61,7 +61,9 @@ function BigScreensHeader() {
             <Link to="/posts">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <Link to="/new-posts">New posts</Link>
+            <Link to="/new-posts" data-test="data-test-new-posts">
+              New posts
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
             <Link to="/my-posts">My posts</Link>
