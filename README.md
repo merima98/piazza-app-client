@@ -32,7 +32,8 @@ Project contains unit (React testing library - jest) tests
     yarn install
     yarn test
 
+```
+
 ### License
 
 [MIT](./LICENSE)
-```
