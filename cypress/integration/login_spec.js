@@ -19,5 +19,6 @@ describe("Should test login form.", () => {
     cy.get('[data-test="data-test-user-icon"]').click({ force: true });
     cy.get('[data-test="data-test-your-profile"]').click();
     cy.url().should("eq", "http://localhost:3000/your-profile");
+    cy.get('[data-test="data-test-edit-profile-data-butoon"]').click();
   });
 });

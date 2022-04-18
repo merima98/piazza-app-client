@@ -81,7 +81,13 @@ function UserProfile() {
           Last name
         </Text>
         <Text mb={2}>{user.user.user[0]?.lastName}</Text>
-        <Button colorScheme={"blue"} size={"xs"} mb={2} onClick={onOpen}>
+        <Button
+          colorScheme={"blue"}
+          size={"xs"}
+          mb={2}
+          onClick={onOpen}
+          data-test="data-test-edit-profile-data-butoon"
+        >
           Edit profile data
         </Button>
         <Drawer isOpen={isOpen} placement="right" onClose={onClose}>

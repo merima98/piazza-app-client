@@ -26,7 +26,7 @@ function App() {
   return (
     <ChakraProvider>
       <ColorModeScript initialColorMode="dark" />
-      <BrowserRouter>
+      <div>
         <Header />
         {(login.login.isLoggedIn || registration.registration.isLoggedIn) && (
           <Routes>
@@ -54,7 +54,7 @@ function App() {
             })}
           </Routes>
         )}
-      </BrowserRouter>
+      </div>
     </ChakraProvider>
   );
 }
