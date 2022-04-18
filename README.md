@@ -24,6 +24,15 @@ Project contains e2e (cypress) tests.
     yarn run cypress open
 ```
 
+Project contains unit (React testing library - jest) tests
+
+```
+    git clone https://github.com/merima98/piazza-app-client.git
+    cd piazza-app-client
+    yarn install
+    yarn test
+
 ### License
 
 [MIT](./LICENSE)
+```
