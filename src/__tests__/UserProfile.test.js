@@ -5,30 +5,22 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "../reducer";
 import { Provider } from "react-redux";
-import BigScreensHeader from "../features/header/BigScreensHeader";
+import UserProfile from "../features/user/userProfile/UserProfile";
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-test("Should render BigScreensHeader component.", () => {
+test("Should render UserProfile component.", () => {
   render(
     <Provider store={store}>
       <Router>
-        <BigScreensHeader />
+        <UserProfile />
       </Router>
     </Provider>
   );
-});
-
-test("Should have New posts link.", () => {
-  render(
-    <Provider store={store}>
-      <Router>
-        <BigScreensHeader />
-      </Router>
-    </Provider>
-  );
-  expect(screen.getByText("New posts").closest("a")).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /Edit profile data/i })
+  ).toBeEnabled();
 });
