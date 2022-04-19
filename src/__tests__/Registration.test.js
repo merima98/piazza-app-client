@@ -21,5 +21,5 @@ test("Should render Registration component.", () => {
     </Provider>
   );
 
-  expect(screen.getByRole("button", { name: /Register/i })).toBeEnabled();
+  expect(screen.getByRole("button", { name: /Register/i })).toBeDisabled();
 });

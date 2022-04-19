@@ -16,9 +16,12 @@ function NewPostForm() {
   const {
     handleSubmit,
     register,
+
     reset,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -58,6 +61,7 @@ function NewPostForm() {
           <FormControl mb={3} isInvalid={errors.image}>
             <Input
               placeholder="Image URL"
+              autoComplete="image"
               {...register("image", {
                 required: "Image URL is required fielad!",
               })}
@@ -69,6 +73,7 @@ function NewPostForm() {
           <FormControl mb={3} isInvalid={errors.content}>
             <Input
               placeholder="Content of image."
+              autoComplete="content"
               {...register("content", {
                 required: "Content is required field!",
                 minLength: {
@@ -87,6 +92,7 @@ function NewPostForm() {
             type="submit"
             colorScheme={"blue"}
             data-test="add-new-post-button"
+            disabled={!isValid}
           >
             Add post
           </Button>

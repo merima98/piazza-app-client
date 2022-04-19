@@ -26,8 +26,10 @@ function Registration() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function onSubmit(values: FieldValues) {
@@ -51,6 +53,7 @@ function Registration() {
                 <Input
                   placeholder="First name"
                   id="firstName"
+                  autoComplete="firstName"
                   {...register("firstName", {
                     required: "First name is required field!",
                     minLength: {
@@ -67,6 +70,7 @@ function Registration() {
                 <Input
                   placeholder="Last name"
                   id="lastName"
+                  autoComplete="lastName"
                   {...register("lastName", {
                     required: "Last name is required field!",
                     minLength: {
@@ -83,6 +87,7 @@ function Registration() {
                 <Input
                   placeholder="Email"
                   id="email"
+                  autoComplete="email"
                   type={"email"}
                   {...register("email", {
                     required: "Email is required!",
@@ -97,6 +102,7 @@ function Registration() {
                   <Input
                     placeholder="Password"
                     id="password"
+                    autoComplete="password"
                     type={show ? "text" : "password"}
                     {...register("password", {
                       required: "Password is required field!",
@@ -123,6 +129,7 @@ function Registration() {
               colorScheme={"blue"}
               data-test="register-button"
               mb={1}
+              disabled={!isValid}
             >
               Register
             </Button>

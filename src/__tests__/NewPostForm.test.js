@@ -21,5 +21,5 @@ test("Should render NewPostForm component", () => {
     </Provider>
   );
 
-  expect(screen.getByRole("button", { name: /Add post/i }));
+  expect(screen.getByRole("button", { name: /Add post/i })).toBeDisabled();
 });

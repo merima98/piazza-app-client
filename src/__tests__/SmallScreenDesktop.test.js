@@ -22,3 +22,16 @@ test("Should render SmallScreenDesktop component.", () => {
   );
   expect(screen.getByRole("button", { name: /Piazza/i })).toBeEnabled();
 });
+
+test("Should have enabled links.", () => {
+  render(
+    <Provider store={store}>
+      <Router>
+        <SmallScreenDesktop />
+      </Router>
+    </Provider>
+  );
+  expect(screen.getByText("New posts").closest("a")).toBeInTheDocument();
+  expect(screen.getByText("Home").closest("a")).toBeInTheDocument();
+  expect(screen.getByText("Login").closest("a")).toBeInTheDocument();
+});

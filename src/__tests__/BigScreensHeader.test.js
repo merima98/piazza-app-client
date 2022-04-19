@@ -32,4 +32,5 @@ test("Should have New posts link.", () => {
   );
   expect(screen.getByText("New posts").closest("a")).toBeInTheDocument();
   expect(screen.getByText("Home").closest("a")).toBeInTheDocument();
+  expect(screen.getByText("Login").closest("a")).toBeInTheDocument();
 });
