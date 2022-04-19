@@ -20,5 +20,5 @@ test("Should render Login component.", () => {
     </Provider>
   );
 
-  expect(screen.getByRole("button", { name: /Login/i })).toBeEnabled();
+  expect(screen.getByRole("button", { name: /Login/i })).toBeDisabled();
 });

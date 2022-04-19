@@ -9,7 +9,7 @@ import {
   InputRightElement,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Eye, EyeOff } from "react-feather";
 import { useForm, FieldValues } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -21,8 +21,10 @@ function Login() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -51,6 +53,7 @@ function Login() {
               <FormControl mb={3} isInvalid={errors.email}>
                 <Input
                   placeholder="Email"
+                  autoComplete="email"
                   type={"email"}
                   {...register("email", {
                     required: "Email is required!",
@@ -64,6 +67,7 @@ function Login() {
                 <InputGroup>
                   <Input
                     placeholder="Password"
+                    autoComplete="password"
                     type={show ? "text" : "password"}
                     {...register("password", {
                       required: "Password is required field!",
@@ -84,7 +88,13 @@ function Login() {
                 </FormErrorMessage>
               </FormControl>
             </Box>
-            <Button w={"100%"} mb={1} type="submit" colorScheme={"blue"}>
+            <Button
+              w={"100%"}
+              mb={1}
+              type="submit"
+              colorScheme={"blue"}
+              isDisabled={!isValid}
+            >
               Login
             </Button>
           </form>
