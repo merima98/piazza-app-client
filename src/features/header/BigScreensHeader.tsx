@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { User, Moon, Sun } from "react-feather";
 import { useEffect } from "react";
+
 import loginAction from "../login/loginAction";
 import registrationAction from "../registration/registrationAction";
 
@@ -84,7 +85,6 @@ function BigScreensHeader() {
                     Your profile
                   </Link>
                 </MenuItem>
-
                 <MenuItem onClick={() => logout()}>Logout</MenuItem>
               </MenuList>
             </Menu>

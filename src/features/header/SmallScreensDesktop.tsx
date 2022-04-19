@@ -7,22 +7,41 @@ import {
   MenuList,
   useColorMode,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { ChevronDown, Moon, Sun } from "react-feather";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import loginAction from "../login/loginAction";
+import registrationAction from "../registration/registrationAction";
 
 function SmallScreenDesktop() {
+  const dispatch = useDispatch();
   const navitation = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
-  const token = window.localStorage.getItem("token");
   function logout() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
     navitation("/login");
   }
 
+  const login = useSelector((state: { loginSlice: any }) => ({
+    login: state.loginSlice,
+  }));
+
+  const registration = useSelector((state: { registrationSlice: any }) => ({
+    registration: state.registrationSlice,
+  }));
+
+  useEffect(() => {
+    dispatch(loginAction.isLogin());
+    dispatch(registrationAction.isRegisteredUser());
+  }, [dispatch]);
+
   return (
     <Flex display={{ base: "block", md: "none" }}>
-      {token ? (
+      {login.login.isLoggedIn || registration.registration.isLoggedIn ? (
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDown />}>
             Piazza
