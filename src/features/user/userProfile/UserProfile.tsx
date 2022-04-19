@@ -28,8 +28,10 @@ function UserProfile() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
   const toast = useToast();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -136,7 +138,12 @@ function UserProfile() {
                 <Button colorScheme={"blue"} size={"xs"} mr={2}>
                   Cancel
                 </Button>
-                <Button colorScheme={"green"} size={"xs"} type="submit">
+                <Button
+                  colorScheme={"green"}
+                  size={"xs"}
+                  type="submit"
+                  disabled={!isValid}
+                >
                   {" "}
                   Save
                 </Button>

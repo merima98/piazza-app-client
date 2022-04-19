@@ -9,7 +9,7 @@ import SinglePost from "../singlePost/SinglePost";
 
 function PostsList() {
   const dispatch = useDispatch();
-  let token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
 
   const posts = useSelector((state: { postsSlice: PostSlice }) => ({
     posts: state.postsSlice.posts,

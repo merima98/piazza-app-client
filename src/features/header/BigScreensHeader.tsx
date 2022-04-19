@@ -21,7 +21,6 @@ function BigScreensHeader() {
   const navitation = useNavigate();
   const dispatch = useDispatch();
   const headerBackground = useColorModeValue("white", "gray.800");
-  let token = window.localStorage.getItem("token");
   function logout() {
     dispatch(loginAction.logOut());
     window.localStorage.removeItem("token");

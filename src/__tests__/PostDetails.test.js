@@ -23,8 +23,8 @@ test("Should render PostDetails component.", async () => {
   );
   expect(screen.getByRole("button", { name: /Edit/i })).toBeEnabled();
   expect(screen.getByRole("button", { name: /Delete/i })).toBeEnabled();
-  const myButton = screen.getByRole("button", { name: /Edit/i });
-  await fireEvent.click(myButton);
+  const editButton = screen.getByRole("button", { name: /Edit/i });
+  await fireEvent.click(editButton);
   expect(screen.getByRole("button", { name: /Save changes/i })).toBeEnabled();
   expect(screen.getByRole("button", { name: /Cancel changes/i })).toBeEnabled();
 });

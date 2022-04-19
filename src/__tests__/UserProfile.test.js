@@ -12,15 +12,19 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-test("Should render UserProfile component.", () => {
-  render(
-    <Provider store={store}>
-      <Router>
-        <UserProfile />
-      </Router>
-    </Provider>
-  );
-  expect(
-    screen.getByRole("button", { name: /Edit profile data/i })
-  ).toBeEnabled();
+describe("Should test UserProfile component.", () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <UserProfile />
+        </Router>
+      </Provider>
+    );
+  });
+  it("Should render UserProfile component.", () => {
+    expect(
+      screen.getByRole("button", { name: /Edit profile data/i })
+    ).toBeEnabled();
+  });
 });
