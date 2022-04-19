@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -12,12 +12,36 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-test("Should render NoPosts component.", () => {
-  render(
-    <Provider store={store}>
-      <Router>
-        <NoPosts />
-      </Router>
-    </Provider>
-  );
+describe("Should test NoPost component.", () => {
+  it("Should render NoPosts component.", () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <NoPosts />
+        </Router>
+      </Provider>
+    );
+  });
+
+  it("Should contain No posts yet!", () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <NoPosts />
+        </Router>
+      </Provider>
+    );
+    expect(screen.getByText("No posts yet!")).toBeInTheDocument();
+  });
+
+  it("Should contain Add new post.", () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <NoPosts />
+        </Router>
+      </Provider>
+    );
+    expect(screen.getByText("Add new post.")).toBeInTheDocument();
+  });
 });
