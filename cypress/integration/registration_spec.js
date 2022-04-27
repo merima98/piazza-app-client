@@ -4,11 +4,11 @@ describe("Should test registration.", () => {
     cy.visit("/");
     cy.findByPlaceholderText(/first name/i).type("John");
     cy.findByPlaceholderText(/last name/i).type("Doee");
-    cy.findByPlaceholderText(/email/i).type("merima123@test.com");
-    cy.findByPlaceholderText(/password/i).type("merima123");
+    cy.findByPlaceholderText(/email/i).type(
+      `john.doe${Math.random()}@gmail.com`
+    );
+    cy.findByPlaceholderText(/password/i).type("testing");
 
-    cy.findByRole("button", {
-      name: /register/i,
-    }).click();
+    cy.get('[cy-test="cy-register-button"]').click();
   });
 });
