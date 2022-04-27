@@ -35,7 +35,7 @@ function Login() {
 
   function onSubmit(values: FieldValues) {
     dispatch(loginAction.loginUser(values));
-    navigate("/");
+    navigate("/posts");
   }
 
   return (
