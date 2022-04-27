@@ -20,6 +20,7 @@ function SmallScreenDesktop() {
   const navitation = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   function logout() {
+    dispatch(authAction.logOut());
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
     navitation("/login");
