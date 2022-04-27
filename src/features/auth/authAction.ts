@@ -1,7 +1,12 @@
 import { FieldValues } from "react-hook-form";
 
 import * as api from "../../api/api";
-import { LOGIN_USER, GET_LOGGED_USER, LOG_OUT_USER } from "./loginTypes";
+import {
+  LOGIN_USER,
+  GET_LOGGED_USER,
+  LOG_OUT_USER,
+  REGISTER_USER,
+} from "./authTypes";
 
 const loginUser = (values: FieldValues) => async (dispatch: any) => {
   const { data } = await api.default.login(values);
@@ -10,7 +15,7 @@ const loginUser = (values: FieldValues) => async (dispatch: any) => {
   window.localStorage.setItem("userId", data.user.id);
 };
 
-export const isLogin = () => async (dispatch: any) => {
+export const isAuthenticated = () => async (dispatch: any) => {
   try {
     dispatch({
       type: GET_LOGGED_USER,
@@ -32,10 +37,18 @@ export const logOut = () => async (dispatch: any) => {
   }
 };
 
+const registeUser = (values: FieldValues) => async (dispatch: any) => {
+  const { data } = await api.default.register(values);
+  dispatch({ type: REGISTER_USER, payload: data });
+  window.localStorage.setItem("token", data.accessToken);
+  window.localStorage.setItem("userId", data.user.id);
+};
+
 const exports = {
   loginUser,
-  isLogin,
+  isAuthenticated,
   logOut,
+  registeUser,
 };
 
 export default exports;

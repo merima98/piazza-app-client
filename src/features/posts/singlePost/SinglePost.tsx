@@ -5,15 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Post } from "../../../models/post";
 
 function SinglePost(props: Post) {
-  const {
-    user,
-    dateOfModification,
-    dateOfCreation,
-    id,
-    userId,
-    content,
-    image,
-  } = props;
+  const { user, dateOfCreation, id, content, image } = props;
 
   function convertDate(date?: string) {
     if (date) {

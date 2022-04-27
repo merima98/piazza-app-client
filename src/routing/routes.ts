@@ -1,9 +1,9 @@
-import Login from "../features/login/Login";
+import Login from "../features/auth/Login";
 import LatestPosts from "../features/posts/latestPosts/LatestPosts";
 import PostDetails from "../features/posts/postDetails/PostDetails";
 import PostsList from "../features/posts/postsList/PostsList";
 import UserPostsList from "../features/posts/userPostsList/UserPostsList";
-import Registration from "../features/registration/Registration";
+import Registration from "../features/auth/Registration";
 import UserProfile from "../features/user/userProfile/UserProfile";
 
 const LOGGED_OUT_ROUTES = [

@@ -14,7 +14,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import registrationAction from "./registrationAction";
+import registrationAction from "./authAction";
 import { Eye, EyeOff } from "react-feather";
 import { useState } from "react";
 

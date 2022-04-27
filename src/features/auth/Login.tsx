@@ -9,13 +9,13 @@ import {
   InputRightElement,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Eye, EyeOff } from "react-feather";
 import { useForm, FieldValues } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import loginAction from "./loginAction";
+import authAction from "./authAction";
 
 function Login() {
   const {
@@ -34,7 +34,7 @@ function Login() {
   };
 
   function onSubmit(values: FieldValues) {
-    dispatch(loginAction.loginUser(values));
+    dispatch(authAction.loginUser(values));
     navigate("/posts");
   }
 

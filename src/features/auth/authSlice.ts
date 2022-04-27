@@ -1,4 +1,9 @@
-import { LOGIN_USER, GET_LOGGED_USER, LOG_OUT_USER } from "./loginTypes";
+import {
+  LOGIN_USER,
+  GET_LOGGED_USER,
+  LOG_OUT_USER,
+  REGISTER_USER,
+} from "./authTypes";
 
 const initialState = {
   user: {},
@@ -6,7 +11,7 @@ const initialState = {
   isLoggedIn: window.localStorage.getItem("token") ? true : false,
 };
 
-export const loginSlice = (state = initialState, { type, payload }: any) => {
+export const authSlice = (state = initialState, { type, payload }: any) => {
   switch (type) {
     case LOGIN_USER:
       return {
@@ -24,6 +29,13 @@ export const loginSlice = (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         isLoggedIn: false,
+      };
+    case REGISTER_USER:
+      return {
+        ...state,
+        accessToken: payload.accessToken,
+        user: payload.user,
+        isLoggedIn: true,
       };
     default:
       return state;

@@ -13,8 +13,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import loginAction from "../login/loginAction";
-import registrationAction from "../registration/registrationAction";
+import authAction from "../auth/authAction";
 
 function SmallScreenDesktop() {
   const dispatch = useDispatch();
@@ -26,22 +25,17 @@ function SmallScreenDesktop() {
     navitation("/login");
   }
 
-  const login = useSelector((state: { loginSlice: any }) => ({
-    login: state.loginSlice,
-  }));
-
-  const registration = useSelector((state: { registrationSlice: any }) => ({
-    registration: state.registrationSlice,
+  const auth = useSelector((state: { authSlice: any }) => ({
+    auth: state.authSlice,
   }));
 
   useEffect(() => {
-    dispatch(loginAction.isLogin());
-    dispatch(registrationAction.isRegisteredUser());
+    dispatch(authAction.isAuthenticated());
   }, [dispatch]);
 
   return (
     <Flex display={{ base: "block", md: "none" }}>
-      {login.login.isLoggedIn || registration.registration.isLoggedIn ? (
+      {auth.auth.isLoggedIn ? (
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDown />}>
             Piazza

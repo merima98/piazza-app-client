@@ -14,31 +14,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { User, Moon, Sun } from "react-feather";
 import { useEffect } from "react";
 
-import loginAction from "../login/loginAction";
-import registrationAction from "../registration/registrationAction";
+import authAction from "../auth/authAction";
 
 function BigScreensHeader() {
   const navitation = useNavigate();
   const dispatch = useDispatch();
   const headerBackground = useColorModeValue("white", "gray.800");
   function logout() {
-    dispatch(loginAction.logOut());
+    dispatch(authAction.logOut());
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("userId");
     navitation("/login");
   }
 
-  const login = useSelector((state: { loginSlice: any }) => ({
-    login: state.loginSlice,
-  }));
-
-  const registration = useSelector((state: { registrationSlice: any }) => ({
-    registration: state.registrationSlice,
+  const auth = useSelector((state: { authSlice: any }) => ({
+    auth: state.authSlice,
   }));
 
   useEffect(() => {
-    dispatch(loginAction.isLogin());
-    dispatch(registrationAction.isRegisteredUser());
+    dispatch(authAction.isAuthenticated());
   }, [dispatch]);
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -55,7 +49,7 @@ function BigScreensHeader() {
       borderColor={"gray.100"}
       p={3}
     >
-      {login.login.isLoggedIn || registration.registration.isLoggedIn ? (
+      {auth.auth.isLoggedIn ? (
         <Breadcrumb separator={""}>
           <BreadcrumbItem>
             <Link to="/posts">Home</Link>
