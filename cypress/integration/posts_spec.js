@@ -3,8 +3,8 @@ describe("Should test posts.", () => {
     //user needs to log in. after user gets log in, user will be able to visit post details.
 
     cy.visit("/login");
-    cy.findByRole("textbox").type("merima123@test.com");
-    cy.findByPlaceholderText(/password/i).type("merima123");
+    cy.findByRole("textbox").type("john.doe0.1721878087822739@gmail.com");
+    cy.findByPlaceholderText(/password/i).type("testing");
     cy.findByRole("button", {
       name: /login/i,
     }).click();
@@ -15,6 +15,6 @@ describe("Should test posts.", () => {
     //user clicks on image, so to navigate on post details page.
     cy.get('[data-test="data-test-post-details-image"]').eq(1).click();
 
-    cy.url().should("include", "/post"); // => true
+    cy.url().should("include", "/post");
   });
 });

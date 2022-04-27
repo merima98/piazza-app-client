@@ -130,6 +130,7 @@ function Registration() {
               data-test="register-button"
               mb={1}
               disabled={!isValid}
+              cy-test="cy-register-button"
             >
               Register
             </Button>
